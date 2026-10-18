@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kiattisak Udchantuek | Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0907; --card:rgba(255,255,255,.04); --line:rgba(255,170,90,.18);
+  --text:#f6efe7; --muted:#b3a597; --a1:#ff6a2b; --a2:#ffb547; --a3:#ff3d6e;
+  --grad:linear-gradient(120deg,var(--a3),var(--a1),var(--a2));
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Sora,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;overflow-x:hidden}
+.mono{font-family:"JetBrains Mono",monospace}
+a{color:inherit;text-decoration:none}
+
+/* Background */
+.bg{position:fixed;inset:0;z-index:-1;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(110px);opacity:.35;animation:float 14s ease-in-out infinite}
+.b1{width:480px;height:480px;background:var(--a1);top:-120px;right:-100px}
+.b2{width:380px;height:380px;background:var(--a3);bottom:-120px;left:-120px;animation-delay:-5s}
+.b3{width:300px;height:300px;background:var(--a2);top:45%;left:45%;opacity:.15;animation-delay:-9s}
+.grid-bg{position:absolute;inset:0;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:70px 70px;opacity:.25;mask-image:radial-gradient(circle at center,#000 30%,transparent 80%)}
+@keyframes float{50%{transform:translate(40px,-40px) scale(1.1)}}
+
+/* Nav */
+nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);z-index:50;display:flex;gap:6px;padding:8px;border:1px solid var(--line);border-radius:100px;background:rgba(15,11,8,.65);backdrop-filter:blur(16px)}
+nav a{padding:8px 16px;border-radius:100px;font-size:13px;color:var(--muted);transition:.3s}
+nav a:hover{background:var(--grad);color:#120a05}
+
+.wrap{width:min(1150px,90%);margin:auto}
+section{padding:110px 0 30px}
+
+/* Hero */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:60px;padding-top:110px}
+.badge{display:inline-flex;align-items:center;gap:10px;padding:7px 15px;border:1px solid var(--line);border-radius:100px;font-size:12px;color:var(--a2);background:var(--card)}
+.badge i{width:8px;height:8px;border-radius:50%;background:#5dff9b;box-shadow:0 0 12px #5dff9b;animation:pulse 1.6s infinite}
+@keyframes pulse{50%{opacity:.3}}
+h1{font-size:clamp(44px,6.5vw,86px);line-height:.98;font-weight:800;letter-spacing:-3px;margin:22px 0}
+.gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.typing{font-size:18px;color:var(--a2);min-height:30px}
+.typing::after{content:"▍";animation:pulse 1s infinite}
+.lead{color:var(--muted);max-width:520px;margin:18px 0 32px;font-size:15px}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:14px 26px;border-radius:14px;font-weight:600;font-size:14px;border:1px solid var(--line);background:var(--card);cursor:pointer;color:var(--text);transition:.3s;font-family:inherit}
+.btn.main{background:var(--grad);color:#140a04;border:none;box-shadow:0 10px 35px rgba(255,106,43,.35)}
+.btn:hover{transform:translateY(-4px)}
+
+.photo{position:relative;justify-self:center;width:min(420px,100%)}
+.ring{position:absolute;inset:-14px;border-radius:34px;background:var(--grad);filter:blur(2px);animation:spin 6s linear infinite;opacity:.9}
+@keyframes spin{to{filter:blur(2px) hue-rotate(40deg)}}
+.photo img{position:relative;width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 20%;border-radius:28px;border:6px solid var(--bg);display:block;background:#1a120c}
+.chip{position:absolute;padding:12px 16px;border-radius:16px;background:rgba(20,14,10,.75);border:1px solid var(--line);backdrop-filter:blur(14px);font-size:12px;animation:float 7s ease-in-out infinite}
+.chip b{display:block;font-size:20px}
+.c1{left:-40px;top:16%}.c2{right:-30px;bottom:14%;animation-delay:-3s}
+
+/* Stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{padding:26px;border:1px solid var(--line);border-radius:20px;background:var(--card);text-align:center}
+.stat b{font-size:40px;font-weight:800}
+.stat p{color:var(--muted);font-size:13px}
+
+/* Headings */
+.tag{font-size:12px;color:var(--a1);letter-spacing:3px}
+h2{font-size:clamp(32px,4.5vw,52px);letter-spacing:-1.5px;margin:8px 0 40px;line-height:1.1}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.skill{position:relative;padding:28px;border-radius:22px;background:var(--card);border:1px solid var(--line);overflow:hidden;transition:.35s}
+.skill::before{content:"";position:absolute;inset:0;background:var(--grad);opacity:0;transition:.35s;z-index:-1}
+.skill:hover{transform:translateY(-6px);border-color:var(--a1);box-shadow:0 18px 45px rgba(255,106,43,.18)}
+.skill .ic{font-size:30px}
+.skill h3{margin:14px 0 8px;font-size:19px}
+.skill p{color:var(--muted);font-size:13.5px}
+.bar{height:5px;border-radius:5px;background:rgba(255,255,255,.07);margin-top:18px;overflow:hidden}
+.bar span{display:block;height:100%;width:0;background:var(--grad);border-radius:5px;transition:width 1.6s ease}
+
+/* Timeline */
+.tl{position:relative;padding-left:36px}
+.tl::before{content:"";position:absolute;left:8px;top:0;bottom:0;width:2px;background:linear-gradient(var(--a1),var(--a3),transparent)}
+.job{position:relative;margin-bottom:26px;padding:28px;border-radius:22px;background:var(--card);border:1px solid var(--line);transition:.3s}
+.job:hover{border-color:var(--a1)}
+.job::before{content:"";position:absolute;left:-35px;top:34px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:3px solid var(--a1);box-shadow:0 0 14px var(--a1)}
+.job.now::before{background:var(--a2)}
+.jh{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.job h3{font-size:20px}
+.role{color:var(--a2);font-size:14px;font-weight:600}
+.date{font-size:12px;color:var(--muted);padding:5px 12px;border:1px solid var(--line);border-radius:100px;height:fit-content}
+.job ul{margin:14px 0 0 18px;color:var(--muted);font-size:14px}
+.job li::marker{color:var(--a1)}
+
+/* Education */
+.edu{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.ec{padding:30px;border-radius:22px;border:1px solid var(--line);background:var(--card)}
+.ec .yr{font-size:13px;color:var(--a1)}
+.ec h3{margin:8px 0 4px}
+.ec p{color:var(--muted);font-size:14px}
+.gpa{display:inline-block;margin-top:16px;padding:6px 14px;border-radius:10px;background:var(--grad);color:#140a04;font-weight:800;font-size:14px}
+.langs{display:flex;gap:14px;margin-top:18px;flex-wrap:wrap}
+.lang{padding:12px 20px;border-radius:14px;border:1px solid var(--line);background:var(--card);font-size:14px}
+.lang span{color:var(--a2)}
+
+/* Contact */
+.contact{padding:56px;border-radius:30px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(255,61,110,.12),rgba(255,106,43,.1),rgba(255,181,71,.08));text-align:center}
+.contact h2{margin-bottom:14px}
+.contact p{color:var(--muted)}
+.cl{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin-top:30px}
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:12px}
+
+/* Reveal */
+.rv{opacity:0;transform:translateY(40px);transition:1s cubic-bezier(.2,.8,.2,1)}
+.rv.show{opacity:1;transform:none}
+
+@media(max-width:900px){
+  .hero{grid-template-columns:1fr;text-align:center;padding-top:130px}
+  .lead{margin-inline:auto}.btns{justify-content:center}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .skills{grid-template-columns:1fr 1fr}
+  .c1{left:-10px}.c2{right:-10px}
+}
+@media(max-width:600px){
+  nav a{padding:7px 10px;font-size:11px}
+  .skills,.edu{grid-template-columns:1fr}
+  .contact{padding:34px 22px}
+  .chip{display:none}
+}
+@media print{
+  .bg,nav,.btns{display:none}
+  body{background:#fff;color:#111}
+  .rv{opacity:1;transform:none}
+  .skill,.job,.ec,.stat,.contact{background:#fff;border:1px solid #ddd;break-inside:avoid}
+  .lead,.skill p,.job ul,.ec p,.stat p{color:#444}
+}
+</style>
+</head>
+<body>
+
+<div class="bg"><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="grid-bg"></div></div>
+
+<nav>
+  <a href="#home">Home</a><a href="#skills">Skills</a><a href="#exp">Experience</a><a href="#edu">Education</a><a href="#contact">Contact</a>
+</nav>
+
+<main class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="rv">
+      <span class="badge mono"><i></i>Currently @ Eagle Ottawa by Lear Corporation</span>
+      <h1>KIATTISAK<br><span class="gt">UDCHANTUEK</span></h1>
+      <div class="typing mono" id="typing"></div>
+      <p class="lead">Motivated and detail-oriented technician with experience in predictive maintenance, facilities management, and procurement coordination. Skilled in oil analysis, gearbox inspection, and vibration monitoring, eager to contribute to organizational efficiency and continuous improvement.</p>
+      <div class="btns">
+        <a href="#exp" class="btn main">View Experience →</a>
+        <a href="#contact" class="btn">Contact Me</a>
+        <button class="btn" onclick="window.print()">⤓ Save PDF</button>
+      </div>
+    </div>
+    <div class="photo rv">
+      <div class="ring"></div>
+      <img src="portrait.jpg" alt="Kiattisak Udchantuek">
+      <div class="chip c1"><b class="gt">5+</b>Years Experience</div>
+      <div class="chip c2"><b class="gt">PdM</b>Predictive Maintenance</div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats rv">
+    <div class="stat"><b class="gt" data-count="5">0</b><b class="gt">+</b><p>Years of Experience</p></div>
+    <div class="stat"><b class="gt" data-count="4">0</b><p>Organizations</p></div>
+    <div class="stat"><b class="gt" data-count="6">0</b><p>Core Skills</p></div>
+    <div class="stat"><b class="gt" data-count="2">0</b><p>Languages</p></div>
+  </div>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="rv"><span class="tag mono">// 01 — SKILLS</span><h2>Core <span class="gt">Expertise</span></h2></div>
+    <div class="skills">
+      <div class="skill rv"><div class="ic">🛢️</div><h3>Oil Analysis</h3><p>Oil sampling, lubrication tasks and lubricant condition inspection.</p><div class="bar"><span data-w="92%"></span></div></div>
+      <div class="skill rv"><div class="ic">📈</div><h3>Predictive Maintenance</h3><p>Planning PdM / PM programs to minimize machinery downtime.</p><div class="bar"><span data-w="90%"></span></div></div>
+      <div class="skill rv"><div class="ic">〰️</div><h3>Vibration Monitoring</h3><p>Monitoring vibration systems to detect early machine failures.</p><div class="bar"><span data-w="85%"></span></div></div>
+      <div class="skill rv"><div class="ic">⚙️</div><h3>Gearbox Inspection</h3><p>Inspecting machine gearboxes for wear and reliability.</p><div class="bar"><span data-w="86%"></span></div></div>
+      <div class="skill rv"><div class="ic">🤝</div><h3>Procurement & Contractors</h3><p>Handling procurement and coordinating contractor work.</p><div class="bar"><span data-w="80%"></span></div></div>
+      <div class="skill rv"><div class="ic">🏭</div><h3>Facilities</h3><p>Monitoring and maintaining facility systems and energy saving.</p><div class="bar"><span data-w="82%"></span></div></div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="exp">
+    <div class="rv"><span class="tag mono">// 02 — EXPERIENCE</span><h2>Work <span class="gt">Journey</span></h2></div>
+    <div class="tl">
+      <div class="job now rv">
+        <div class="jh"><div><h3>Eagle Ottawa by Lear Corporation</h3><div class="role">Assistant Engineering Maintenance</div></div><span class="date mono">Feb 2026 – Present</span></div>
+        <ul>
+          <li>Plan and execute predictive and preventive maintenance to minimize machinery downtime.</li>
+          <li>Supervise technical teams and coordinate workflows during plant shutdowns.</li>
+          <li>Create technical reports and roadmaps to present project progress to management.</li>
+        </ul>
+      </div>
+      <div class="job rv">
+        <div class="jh"><div><h3>Michelin Siam Co., Ltd. – Laem Chabang</h3><div class="role">Predictive Maintenance Officer</div></div><span class="date mono">Apr 2023 – Jan 2026</span></div>
+        <ul>
+          <li>Conducted oil analysis and lubrication tasks.</li>
+          <li>Performed machine lubricant inspections.</li>
+          <li>Inspected machine gearboxes.</li>
+          <li>Monitored vibration systems.</li>
+        </ul>
+      </div>
+      <div class="job rv">
+        <div class="jh"><div><h3>Viking Life-Saving Equipment (Thailand) Ltd.</h3><div class="role">Facilities Operator · Laem Chabang Industrial Estate</div></div><span class="date mono">Jun 2022 – Mar 2023</span></div>
+        <ul>
+          <li>Handled procurement and contractor coordination.</li>
+          <li>Monitored and maintained facility systems.</li>
+          <li>Implemented energy-saving measures.</li>
+          <li>Prepared monthly reports.</li>
+        </ul>
+      </div>
+      <div class="job rv">
+        <div class="jh"><div><h3>Royal Thai Navy Dockyard – Sattahip</h3><div class="role">Intern – Maintenance Technician</div></div><span class="date mono">May 2021 – Sep 2021</span></div>
+        <ul>
+          <li>Performed maintenance for naval ships.</li>
+          <li>Manufactured ship components.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="edu">
+    <div class="rv"><span class="tag mono">// 03 — EDUCATION</span><h2>Education & <span class="gt">Languages</span></h2></div>
+    <div class="edu">
+      <div class="ec rv"><span class="yr mono">2022</span><h3>Higher Vocational Certificate</h3><p>Thai-Austrian Technical College — Production Technology</p><span class="gpa">GPA 3.21</span></div>
+      <div class="ec rv"><span class="yr mono">2020</span><h3>Vocational Certificate</h3><p>Thai-Austrian Technical College — Industrial Machinery</p><span class="gpa">GPA 3.41</span></div>
+    </div>
+    <div class="langs rv">
+      <div class="lang">🇹🇭 Thai — <span>Fluent</span></div>
+      <div class="lang">🇬🇧 English — <span>Basic</span></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact rv">
+      <span class="tag mono">// 04 — CONTACT</span>
+      <h2>Let's <span class="gt">Work Together</span></h2>
+      <p>Open to opportunities in maintenance engineering, reliability and facilities management.</p>
+      <div class="cl">
+        <a class="btn main" href="tel:0873430375">📞 087-343-0375</a>
+        <a class="btn" href="mailto:Kongudjantuk@gmail.com">✉️ Kongudjantuk@gmail.com</a>
+        <span class="btn">📍 Chonburi 20150</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="mono">© 2026 Kiattisak Udchantuek · Assistant Engineering Maintenance</footer>
+
+<script>
+// Typing effect
+const words=["Assistant Engineering Maintenance","Predictive Maintenance Specialist","Reliability & Facilities"];
+let w=0,c=0,del=false;const t=document.getElementById("typing");
+(function type(){
+  const s=words[w];t.textContent=s.slice(0,c);
+  if(!del&&c<s.length)c++;else if(del&&c>0)c--;else{del=!del;if(!del)w=(w+1)%words.length;setTimeout(type,del?1500:300);return;}
+  setTimeout(type,del?35:70);
+})();
+
+// Reveal, counters, skill bars
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;const el=e.target;el.classList.add("show");
+  el.querySelectorAll("[data-w]").forEach(b=>b.style.width=b.dataset.w);
+  el.querySelectorAll("[data-count]").forEach(n=>{let i=0,m=+n.dataset.count;const iv=setInterval(()=>{n.textContent=++i;if(i>=m)clearInterval(iv)},180)});
+  io.unobserve(el);
+}),{threshold:.15});
+document.querySelectorAll(".rv").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
